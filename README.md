@@ -6,7 +6,6 @@ This project presents a high-performance, hardware-accelerated digital audio equ
 ## System Architecture
 The project employs a Hardware-Software Co-Design methodology, illustrated in the Vivado Block Design below:
 
-![Vivado Block Design](images/block_design.png)
 
 * **Programmable Logic (Hardware):** The signal processing pipeline is constructed using the Xilinx FIR Compiler IP core, integrated with an AXI Direct Memory Access (DMA) engine. This configuration enables high-bandwidth audio data streaming directly between the system memory (DDR) and the FPGA fabric.
 * **Processing System (Software):** A Python-based control layer running on the embedded Linux OS (via Jupyter Notebooks) manages the data flow, handles audio file I/O, and interfaces with the hardware drivers.
