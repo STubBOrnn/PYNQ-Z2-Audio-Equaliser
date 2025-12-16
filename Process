@@ -1,0 +1,50 @@
+Implementation Procedure
+The development process is divided into two primary phases: Hardware Implementation using Xilinx Vivado and Software Deployment using the PYNQ framework.
+
+1. Hardware Design (Xilinx Vivado)
+Create a new Vivado project targeting the PYNQ-Z2 board constraints to ensure correct pin mapping.
+
+a. Instantiate the Zynq7 Processing System IP and apply the board presets to configure the DDR and clock settings.
+
+b. Enable the High-Performance (HP) Slave AXI ports on the Zynq PS to permit direct memory access by the FPGA fabric.
+
+c. Integrated the Xilinx FIR Compiler 7.2 IP core into the block design.
+
+d. Load the Coefficient Vector with 81-tap values generated via Python using a Kaiser window to define specific frequency responses for Low, Band, and High pass filters.
+
+e. Configure the input and output data width of the filter to match the system requirements.
+
+f. Implement the AXI Direct Memory Access (DMA) IP in Simple Mode with Scatter-Gather disabled to manage high-speed data transfer.
+
+g. Connect the DMA Memory-Map-to-Stream (MM2S) channel to the filter input and the Stream-to-Memory-Map (S2MM) channel to the filter output.
+
+h. Insert AXI4-Stream Subset Converters to manage protocol mismatches between the 32-bit DMA and the filter data width.
+
+i. Configure the Down-Converter to truncate 32-bit DMA data to 16-bit samples for the FIR filter input.
+
+j. Configure the Up-Converter to zero-pad the 16-bit filtered output back to 32-bit alignment for the DMA write channel.
+
+k. Perform Design Validation to ensure connectivity and addressing integrity across the block design.
+
+l. Run Synthesis and Implementation to map the logical design to the physical FPGA resources.
+
+m. Generate the Bitstream (.bit) and Hardware Handoff (.hwh) files for software integration.
+
+2. Software Deployment (PYNQ Framework)
+a. Boot the PYNQ-Z2 board and establish a connection via the Jupyter Notebook interface.
+
+b. Upload the generated .bit and .hwh files alongside the test audio samples to the project directory.
+
+c. Import the pynq library and utilize the Overlay class to program the FPGA fabric with the custom bitstream at runtime.
+
+d. Initialize the DMA driver aliases to enable software control over the data pipeline.
+
+e. Implement Contiguous Memory Allocation (CMA) to create physically continuous data buffers in RAM, ensuring efficient DMA transactions.
+
+f. Load the audio data using Python, convert it to the required integer format, and populate the input buffer.
+
+g. Trigger the DMA transfer to send data to the FPGA and block execution until the filtered data is received in the output buffer.
+
+h. Visualize the input and output signals in the time domain using matplotlib to verify signal attenuation.
+
+i. Save the processed audio to a new WAV file for auditory verification.
