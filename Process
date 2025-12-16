@@ -2,7 +2,7 @@ Implementation Procedure
 The development process is divided into two primary phases: Hardware Implementation using Xilinx Vivado and Software Deployment using the PYNQ framework.
 
 1. Hardware Design (Xilinx Vivado)
-Create a new Vivado project targeting the PYNQ-Z2 board constraints to ensure correct pin mapping.
+Create a new Vivado project targeting the PYNQ-Z2 board.
 
 a. Instantiate the Zynq7 Processing System IP and apply the board presets to configure the DDR and clock settings.
 
