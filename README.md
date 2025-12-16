@@ -1,7 +1,7 @@
-# FPGA-Accelerated Audio Equalizer on PYNQ-Z2
+# FPGA-Accelerated FIR Filters on PYNQ-Z2
 
 ## Project Overview
-This project presents a high-performance, hardware-accelerated digital audio equalizer implemented on the PYNQ-Z2 FPGA board using the Xilinx Zynq-7000 SoC. The system is designed to offload computationally intensive Digital Signal Processing (DSP) tasks—specifically Finite Impulse Response (FIR) filtering—from the general-purpose processor to the Programmable Logic (PL). By utilizing custom hardware overlays, the design demonstrates significant efficiency improvements and architectural flexibility compared to purely software-based signal processing solutions.
+This project presents a high-performance, hardware-accelerated digital audio filters implemented on the PYNQ-Z2 FPGA board using the Xilinx Zynq-7000 SoC. The system is designed to offload computationally intensive Digital Signal Processing (DSP) tasks—specifically Finite Impulse Response (FIR) filtering—from the general-purpose processor to the Programmable Logic (PL). By utilizing custom hardware overlays, the design demonstrates significant efficiency improvements and architectural flexibility compared to purely software-based signal processing solutions.
 
 ## System Architecture
 The project employs a Hardware-Software Co-Design methodology, illustrated in the Vivado Block Design below:
